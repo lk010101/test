@@ -1,10 +1,6 @@
 let titleProject = prompt('Название проекта?')
 console.log(titleProject)
 
-let screensValue = prompt('Какие типы экранов - шаблонные, с уникальным дизайном, с анимациями?')
-
-let responsive = prompt('Нужен ли респонсивный сайт?')
-
 let service1 = prompt('Какой сервис нужен?')
 console.log (service1)
 
@@ -53,7 +49,7 @@ console.log('Стоимость доп. услуг + стоимость верс
 let changedTitle = '';
 
 function getTitle() {
-    return titleProject [0].toUpperCase() + titleProject.slice(1).toLocaleLowerCase();
+    return titleProject.trim().charAt(0).toUpperCase() + titleProject.trim().slice(1).toLocaleLowerCase();
 }
 
 changedTitle = getTitle()
@@ -61,6 +57,7 @@ console.log('Измененное название проекта:', changedTitl
 
 // задание 4
 function getServicePercentPrice () {
+    let percentageProject = +(fullPrice * (percentage / 100))
     return fullPrice - +percentageProject
     
 }
@@ -76,6 +73,8 @@ if (fullPrice > 50000) {
     console.log ('Скидка 10%')
 } else if (fullPrice > 20000 && fullPrice < 40000) {
     console.log ('Сделаем скидку 5%');
+} else if (fullPrice > 40001 && fullPrice <49999) {
+    console.log('Сделаем лучшую скидку')
 } else if (fullPrice < 20000 && fullPrice > 0) {
     console.log ('Скидка не предусмотрена:(')
 } else if (fullPrice < 0) {
