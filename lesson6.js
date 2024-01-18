@@ -142,3 +142,20 @@ console.log (service2)
 console.log (servicePrice2)
 
 console.log(Math.ceil(servicePercentPrice));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+else {
+    alert ('Попробуй еще раз!');
+}
