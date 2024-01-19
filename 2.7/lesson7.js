@@ -10,38 +10,67 @@ function checkIsNumber(number) {
 
 
 function randomGenerate (min, max) {
-    min = 1;
-    max = 2;
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-let randomNumber = randomGenerate ();
-console.log (randomNumber)
-
 const gameBotFunction = function () {
+    const minNumber = 1;
+    const maxNumber = 100;
 
-    let answerNum = ''
+    let randomNumber = randomGenerate(minNumber, maxNumber);
+    console.log (randomNumber);
 
-    for (let i = 0; i < 3; i++) {
-        answerNum = prompt('Угадай число от 0 до 100')
-    }
+    let tries = 2;
+
+    const getResult = function () {
+        let answerNum = prompt('Угадай число от 0 до 100');
+
+        if (answerNum === null) {
+            alert('Ну вот( игра окончена');
+            return;
+        }
 
         while (!checkIsNumber(answerNum) || answerNum.trim() === '' || answerNum === null) {
-            alert ('Пожалуйста, введи корректное число')
+            alert('Пожалуйста, введи число');
+            answerNum = prompt('Угадай число от 0 до 100');
         }
-
-        answerNum = parseInt(answerNum);
 
         if (answerNum < randomNumber) {
-            alert ('Неверно! Я загадал число больше!');
-        
+            alert(`Неверно! Я загадал число больше! Осталось ${tries} попыток.`);
         } else if (answerNum > randomNumber) {
-            alert ('Неверно! Я загадал число меньше!')
-
+            alert(`Неверно! Я загадал число меньше! Осталось ${tries} попыток.`);
         } else {
-        alert ('Правильно! Ты угадал число!'); 
+            alert('Невероятно! Ты угадал число!');
+            const playAgain = confirm('Хочешь начать заново?');
+
+            if (playAgain) {
+                randomNumber = randomGenerate(minNumber, maxNumber);
+                tries = 3;
+                getResult();
+            } else {
+                alert('Ну все( игра окончена');
+            }
+
+            return;
         }
 
+        if (tries > 0) {
+            tries--;
+            getResult();
+        } else {
+            const playAgain = confirm('Попытки закончились. Хочешь начать заново?');
+            if (playAgain) {
+                randomNumber = randomGenerate(minNumber, maxNumber);
+                tries = 2;
+                getResult();
+            } else {
+                alert('Ну все( игра окончена');
+            }
+        }
     }
 
-gameBotFunction ()
+    getResult();
+
+}
+
+gameBotFunction();
